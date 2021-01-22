@@ -17,12 +17,12 @@ func NewIssue(to eos.AccountName, quantity eos.Asset, memo string) *eos.Action {
 	}
 }
 
-func NewDiyIssue(code, to eos.AccountName, quantity eos.Asset, memo string) *eos.Action {
+func NewDiyIssue(code, authAcc, to eos.AccountName, quantity eos.Asset, memo string) *eos.Action {
 	return &eos.Action{
 		Account: code,
 		Name:    ActN("issue"),
 		Authorization: []eos.PermissionLevel{
-			{Actor: code, Permission: PN("active")},
+			{Actor: authAcc, Permission: PN("active")},
 		},
 		ActionData: eos.NewActionData(Issue{
 			To:       to,
