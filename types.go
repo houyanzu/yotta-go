@@ -194,6 +194,19 @@ func (a Asset) Sub(other Asset) Asset {
 	return Asset{Amount: a.Amount - other.Amount, Symbol: a.Symbol}
 }
 
+func (a Asset) Cmp(other Asset) int8 {
+	if a.Symbol != other.Symbol {
+		panic("Sub applies only to assets with the same symbol")
+	}
+	if a.Amount == other.Amount {
+		return 0
+	} else if a.Amount > other.Amount {
+		return 1
+	} else {
+		return -1
+	}
+}
+
 func (a Asset) String() string {
 	amt := a.Amount
 	if amt < 0 {
