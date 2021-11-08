@@ -11,7 +11,7 @@ func SetUSDTPrice(price uint64, accType uint8, authActor eos.AccountName) *eos.A
 		Authorization: []eos.PermissionLevel{
 			{Actor: authActor, Permission: PN("active")},
 		},
-		ActionData: eos.NewActionData(YTAPrice{
+		ActionData: eos.NewActionData(USDTPrice{
 			Price:   price,
 			AccType: accType,
 		}),
